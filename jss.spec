@@ -57,6 +57,7 @@ install -d $RPM_BUILD_ROOT{%{_javadir},%{_libdir}}
 
 install mozilla/dist/xpclass.jar $RPM_BUILD_ROOT%{_javadir}
 ln -sf xpclass.jar $RPM_BUILD_ROOT%{_javadir}/jss.jar
+ln -sf xpclass.jar $RPM_BUILD_ROOT%{_javadir}/jss3.jar
 
 install mozilla/dist/Linux*/lib/libjss3.so $RPM_BUILD_ROOT%{_libdir}
 
@@ -70,5 +71,5 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc mozilla/security/jss/jss.html
 %attr(755,root,root) %{_libdir}/libjss3.so
-%{_javadir}/jss.jar
+%{_javadir}/jss*.jar
 %{_javadir}/xpclass.jar
