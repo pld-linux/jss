@@ -1,4 +1,3 @@
-# TODO: fix JNI build
 Summary:	JSS - Network Security Services for Java
 Summary(pl):	JSS - Network Security Services for Java - us³ugi bezpieczeñstwa sieciowego dla Javy
 Name:		jss
@@ -10,6 +9,7 @@ Source0:	ftp://ftp.mozilla.org/pub/mozilla.org/security/jss/releases/JSS_3_4_1_R
 # Source0-md5:	29689ea36b27584feb22d291404506ea
 URL:		http://www.mozilla.org/projects/security/pki/jss/
 BuildRequires:	jdk
+BuildRequires:	jpackage-utils
 BuildRequires:	nspr-devel >= 2.0
 BuildRequires:	nss-devel
 BuildRequires:	perl-base
@@ -34,6 +34,11 @@ BER/DER.
 %setup -q -n %{name}-%{version}-src
 
 sed -i -e 's/-O/-O -source 1.4/' mozilla/security/jss/build_java.pl
+sed -i -e 's,/classic,/server,' mozilla/security/coreconf/jdk.mk
+
+install -d mozilla/dist/public
+ln -sf /usr/include/nspr mozilla/dist/public/nspr20
+ln -sf /usr/include/nss mozilla/dist/public/nss
 
 %build
 %{__make} -C mozilla/security/coreconf \
@@ -43,17 +48,17 @@ sed -i -e 's/-O/-O -source 1.4/' mozilla/security/jss/build_java.pl
 %{__make} -C mozilla/security/jss \
 	BUILD_OPT=1 \
 	CC="%{__cc}" \
-	JAVA_HOME=%{_libdir}/java \
+	JAVA_HOME="%{java_home}" \
 	OPTIMIZER="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_javalibdir}
+install -d $RPM_BUILD_ROOT{%{_javadir},%{_libdir}}
 
-install mozilla/dist/xpclass.jar $RPM_BUILD_ROOT%{_javalibdir}
-ln -sf xpclass.jar $RPM_BUILD_ROOT%{_javalibdir}/jss.jar
+install mozilla/dist/xpclass.jar $RPM_BUILD_ROOT%{_javadir}
+ln -sf xpclass.jar $RPM_BUILD_ROOT%{_javadir}/jss.jar
 
-# TODO: JNI library
+install mozilla/dist/Linux*/lib/libjss3.so $RPM_BUILD_ROOT%{_libdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -61,4 +66,6 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc mozilla/security/jss/jss.html
-%{_javalibdir}/*.jar
+%attr(755,root,root) %{_libdir}/libjss3.so
+%{_javadir}/jss.jar
+%{_javadir}/xpclass.jar
