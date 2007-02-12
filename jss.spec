@@ -1,5 +1,5 @@
 Summary:	JSS - Network Security Services for Java
-Summary(pl.UTF-8):   JSS - Network Security Services for Java - usługi bezpieczeństwa sieciowego dla Javy
+Summary(pl.UTF-8):	JSS - Network Security Services for Java - usługi bezpieczeństwa sieciowego dla Javy
 Name:		jss
 Version:	3.4.1
 Release:	1
