@@ -1,5 +1,5 @@
 Summary:	JSS - Network Security Services for Java
-Summary(pl):	JSS - Network Security Services for Java - us³ugi bezpieczeñstwa sieciowego dla Javy
+Summary(pl.UTF-8):   JSS - Network Security Services for Java - usÅ‚ugi bezpieczeÅ„stwa sieciowego dla Javy
 Name:		jss
 Version:	3.4.1
 Release:	1
@@ -24,10 +24,10 @@ A Java interface to NSS that supports most of the security standards
 and encryption technologies supported by NSS. JSS also provides a pure
 Java interface for ASN.1 types and BER/DER encoding.
 
-%description -l pl
-Interfejs Javy do biblioteki NSS obs³uguj±cy wiêkszo¶æ standardów
-bezpieczeñstwa i technologii szyfrowania obs³ugiwanych przez NSS. JSS
-udostêpnia tak¿e czysto javowy interfejs do typów ASN.1 i kodowania
+%description -l pl.UTF-8
+Interfejs Javy do biblioteki NSS obsÅ‚ugujÄ…cy wiÄ™kszoÅ›Ä‡ standardÃ³w
+bezpieczeÅ„stwa i technologii szyfrowania obsÅ‚ugiwanych przez NSS. JSS
+udostÄ™pnia takÅ¼e czysto javowy interfejs do typÃ³w ASN.1 i kodowania
 BER/DER.
 
 %prep
