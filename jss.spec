@@ -1,19 +1,20 @@
 Summary:	JSS - Network Security Services for Java
 Summary(pl.UTF-8):	JSS - Network Security Services for Java - usługi bezpieczeństwa sieciowego dla Javy
 Name:		jss
-Version:	3.4.1
+Version:	4.2.5
 Release:	1
-License:	NPL 1.1
+License:	MPL 1.1 or GPL v2+ or LGPL v2.1+
 Group:		Development/Languages/Java
-Source0:	ftp://ftp.mozilla.org/pub/mozilla.org/security/jss/releases/JSS_3_4_1_RTM/src/%{name}-%{version}-src.tar.gz
-# Source0-md5:	29689ea36b27584feb22d291404506ea
+Source0:	ftp://ftp.mozilla.org/pub/mozilla.org/security/jss/releases/JSS_4_2_5_RTM/src/%{name}-%{version}-src.zip
+# Source0-md5:	4b6b7aa5c0bc8a9d48327991c7b3e23c
+Patch0:		%{name}-coreconf.patch
 URL:		http://www.mozilla.org/projects/security/pki/jss/
 BuildRequires:	jdk
 BuildRequires:	jpackage-utils
 BuildRequires:	nspr-devel >= 2.0
 BuildRequires:	nss-devel
 BuildRequires:	perl-base
-BuildRequires:	sed >= 4.0
+BuildRequires:	unzip
 Requires:	jre
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -31,10 +32,8 @@ udostępnia także czysto javowy interfejs do typów ASN.1 i kodowania
 BER/DER.
 
 %prep
-%setup -q -n %{name}-%{version}-src
-
-sed -i -e 's/-O/-O -source 1.4/' mozilla/security/jss/build_java.pl
-sed -i -e 's,/classic,/server,' mozilla/security/coreconf/jdk.mk
+%setup -q -c
+%patch0 -p1
 
 install -d mozilla/dist/public
 ln -sf /usr/include/nspr mozilla/dist/public/nspr20
@@ -57,9 +56,9 @@ install -d $RPM_BUILD_ROOT{%{_javadir},%{_libdir}}
 
 install mozilla/dist/xpclass.jar $RPM_BUILD_ROOT%{_javadir}
 ln -sf xpclass.jar $RPM_BUILD_ROOT%{_javadir}/jss.jar
-ln -sf xpclass.jar $RPM_BUILD_ROOT%{_javadir}/jss3.jar
+ln -sf xpclass.jar $RPM_BUILD_ROOT%{_javadir}/jss4.jar
 
-install mozilla/dist/Linux*/lib/libjss3.so $RPM_BUILD_ROOT%{_libdir}
+install mozilla/dist/Linux*/lib/libjss4.so $RPM_BUILD_ROOT%{_libdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -70,6 +69,6 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc mozilla/security/jss/jss.html
-%attr(755,root,root) %{_libdir}/libjss3.so
+%attr(755,root,root) %{_libdir}/libjss4.so
 %{_javadir}/jss*.jar
 %{_javadir}/xpclass.jar
