@@ -1,12 +1,12 @@
 Summary:	JSS - Network Security Services for Java
 Summary(pl.UTF-8):	JSS - Network Security Services for Java - usługi bezpieczeństwa sieciowego dla Javy
 Name:		jss
-Version:	4.2.5
+Version:	4.3
 Release:	1
 License:	MPL 1.1 or GPL v2+ or LGPL v2.1+
 Group:		Development/Languages/Java
-Source0:	ftp://ftp.mozilla.org/pub/mozilla.org/security/jss/releases/JSS_4_2_5_RTM/src/%{name}-%{version}-src.zip
-# Source0-md5:	4b6b7aa5c0bc8a9d48327991c7b3e23c
+Source0:	ftp://ftp.mozilla.org/pub/mozilla.org/security/jss/releases/JSS_4_3_RTM/src/%{name}-%{version}.tar.bz2
+# Source0-md5:	5bc07d169eb61852a35c11f056b9ce52
 Patch0:		%{name}-coreconf.patch
 URL:		http://www.mozilla.org/projects/security/pki/jss/
 BuildRequires:	jdk
