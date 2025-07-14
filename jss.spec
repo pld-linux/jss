@@ -33,7 +33,7 @@ BER/DER.
 
 %prep
 %setup -q -c
-%patch0 -p1
+%patch -P0 -p1
 
 install -d mozilla/dist/public
 ln -sf /usr/include/nspr mozilla/dist/public/nspr20
